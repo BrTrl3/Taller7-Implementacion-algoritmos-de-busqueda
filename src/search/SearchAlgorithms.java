@@ -125,7 +125,6 @@ public class SearchAlgorithms {
                 right = mid - 1;
             }
         }
-
         return -1;
     }
 

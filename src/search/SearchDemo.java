@@ -14,7 +14,7 @@ public class SearchDemo {
     public static void main(String[] args) {
 
         // -------------------------------------------------------------
-        // DATASETS OFICIALES DEL TALLER (ARREGLOS ESTÁTICOS)
+        // DATASETS OFICIALES DEL TALLER 5 (ARREGLOS ESTÁTICOS)
         // -------------------------------------------------------------
         int[] A = {8, 3, 6, 3, 9};
         int[] B = {5, 4, 3, 2, 1};
