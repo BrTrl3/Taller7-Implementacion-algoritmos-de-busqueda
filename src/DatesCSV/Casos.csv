@@ -1,0 +1,15 @@
+id;metodo;arreglo;clave;predicado;resultado
+16;buscarPrimero;"[7,8,9,10]";8;;1
+17;buscarPrimero;"[1,1,1,1]";1;;0
+18;buscarPrimero;"[5,6,7,8]";4;;-1
+19;buscarPrimero;[];3;;-1
+20;buscarPrimero;null;2;;-1
+21;buscarUltimo;"[3,3,3,3]";3;;3
+22;buscarUltimo;"[10,20,30,40]";25;;-1
+23;buscarUltimo;"[1,2,3,4,5]";5;;4
+24;buscarUltimo;[];1;;-1
+25;buscarUltimo;null;0;;-1
+26;buscarTodos;"[2,4,6,8,10]";;PAR;[0,1,2,3,4]
+27;buscarTodos;"[1,3,5,7,9]";;IMPAR;[0,1,2,3,4]
+28;buscarTodos;"[10,20,30,40]";15;MAYOR_QUE_3;[0,1,2,3]
+30;buscarTodos;[];;SIEMPRE;[]
