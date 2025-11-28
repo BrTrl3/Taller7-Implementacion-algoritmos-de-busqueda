@@ -4,6 +4,7 @@ import unl.edu.ec.busquedas.BusquedaCentinela;
 import unl.edu.ec.busquedas.BusquedaPredicados;
 import unl.edu.ec.busquedas.BusquedaSecuencial;
 import unl.edu.ec.busquedas.BusquedaSLL;
+import unl.edu.ec.busquedas.BusquedaBinaria;   // <<--- IMPORTANTE
 import unl.edu.ec.ordenacion.ListaSimpleEnlazada;
 import unl.edu.ec.ordenacion.NodoSLL;
 
@@ -16,14 +17,11 @@ import java.util.Comparator;
 public class SearchDemo {
 
     public static void main(String[] args) {
+
         System.out.println("--- EJECUCIÓN AUTOMATIZADA DE CASOS DE PRUEBA (TALLER 7) ---");
         System.out.println("Cargando casos desde el CSV interno...\n");
 
         List<CasoPrueba> casos = unl.edu.ec.pruebas.CasosLoader.leerCSV("src/DatesCSV/Casos.csv");
-
-        // 1. Ordenar para agrupar visualmente por método (Primero, Último, Todos)
-        casos.sort(Comparator.comparing(c -> c.metodo));
-
 
         int passed = 0;
         int total = casos.size();
@@ -34,10 +32,11 @@ public class SearchDemo {
             boolean isPassed;
             String header = "";
 
-            // --- GESTIÓN DE ENCABEZADOS Y AGRUPACIÓN ---
+            // ENCABEZADOS ORDENADOS
             if (!caso.metodo.equals(currentMethodGroup)) {
                 currentMethodGroup = caso.metodo;
                 System.out.println("\n" + "=".repeat(70));
+
                 switch (currentMethodGroup) {
                     case "buscarPrimero":
                         header = "A. BÚSQUEDA SECUENCIAL CLÁSICA: PRIMERA OCURRENCIA [indexOfFirst]";
@@ -51,11 +50,12 @@ public class SearchDemo {
                     default:
                         header = "GRUPO NO RECONOCIDO";
                 }
+
                 System.out.println(header);
                 System.out.println("=".repeat(70));
             }
 
-            // --- EJECUCIÓN DEL CASO ---
+            // EJECUCIÓN DE LOS CASOS
             if (caso.arreglo == null || caso.arreglo.length == 0) {
                 if (caso.metodo.equals("buscarPrimero") || caso.metodo.equals("buscarUltimo")) {
                     resultadoObtenido = "-1";
@@ -81,22 +81,16 @@ public class SearchDemo {
                         break;
                     default:
                         resultadoObtenido = "METODO_NO_ENCONTRADO";
-                        break;
                 }
             }
 
-            // --- REPORTE ---
             isPassed = resultadoObtenido.equals(caso.resultadoEsperado);
-            if (isPassed) {
-                passed++;
-            }
+            if (isPassed) passed++;
 
             String inputDetail = caso.metodo.startsWith("buscarTodo")
                     ? caso.predicadoNombre : String.valueOf(caso.clave);
 
-            String arrayDisplay = caso.arreglo != null
-                    ? Arrays.toString(caso.arreglo)
-                    : "null";
+            String arrayDisplay = caso.arreglo != null ? Arrays.toString(caso.arreglo) : "null";
 
             System.out.printf("   ID %-2d: Arreglo: %-25s | Clave/Predicado: %-15s\n",
                     caso.id, arrayDisplay, inputDetail);
@@ -104,32 +98,35 @@ public class SearchDemo {
                     caso.resultadoEsperado, resultadoObtenido, isPassed ? " PASS" : " FAIL");
         }
 
-
-        // --- PRUEBAS DE BÚSQUEDA CON CENTINELA ---
-        ejecutarPruebasConCentinela();
-        // --- RESUMEN FINAL ---
+        // ORDEN CORRECTO DE INFORMES:
+        // A, B, C ya se imprimen arriba
+        ejecutarPruebasConCentinela();  // D
+        ejecutarPruebasBinarias();      // E  <<--- AGREGADO
         System.out.println("\n" + "=".repeat(70));
         System.out.println("--- Resumen: " + passed + " de " + total + " pruebas pasadas. ---");
         System.out.println("=".repeat(70));
-        // --- PRUEBAS EN LISTAS SIMPLEMENTE ENLAZADAS ---
+
+        // PRUEBAS EN LISTAS
         System.out.println("\n--- PRUEBAS EN LISTAS SIMPLEMENTE ENLAZADAS (SLL) ---");
         ejecutarPruebasEnSLL();
-
     }
 
+
+    // -------------------------------------------------------
+    // MÉTODO D: BÚSQUEDA CON CENTINELA
+    // -------------------------------------------------------
     private static void ejecutarPruebasConCentinela() {
 
         System.out.println("\n" + "=".repeat(70));
         System.out.println("D. BÚSQUEDA SECUENCIAL CON CENTINELA [searchWithSentinel]");
-
         System.out.println("=".repeat(70));
 
         int[][] casos = {
-                {7, 8, 9, 10}, // Caso 1
-                {1, 1, 1, 1},  // Caso 2
-                {5, 6, 7, 8},  // Caso 3
-                {},            // Caso 4
-                null           // Caso 5
+                {7, 8, 9, 10},
+                {1, 1, 1, 1},
+                {5, 6, 7, 8},
+                {},
+                null
         };
 
         int[] claves = {8, 1, 4, 3, 2};
@@ -149,15 +146,54 @@ public class SearchDemo {
                     indice,
                     comparaciones
             );
-
         }
 
         System.out.println("=".repeat(70));
-
     }
 
+
+    // -------------------------------------------------------
+    // MÉTODO E: BÚSQUEDA BINARIA
+    // -------------------------------------------------------
+    private static void ejecutarPruebasBinarias() {
+
+        System.out.println("\n" + "=".repeat(70));
+        System.out.println("E. BÚSQUEDA BINARIA [binarySearch]");
+        System.out.println("=".repeat(70));
+
+        int[][] casos = {
+                {1, 2, 3, 4, 5},
+                {10, 20, 30, 40},
+                {5, 6, 7, 8, 9},
+                {},
+                null
+        };
+
+        int[] claves = {3, 25, 7, 1, 2};
+
+        for (int i = 0; i < casos.length; i++) {
+
+            int[] arreglo = casos[i];
+            int clave = claves[i];
+            int resultado = BusquedaBinaria.binarySearch(arreglo, clave);
+
+            System.out.printf("   Caso %-2d: Arreglo: %-25s | Clave: %-5d -> Índice: %-5d\n",
+                    i + 1,
+                    arreglo != null ? Arrays.toString(arreglo) : "null",
+                    clave,
+                    resultado
+            );
+        }
+
+        System.out.println("=".repeat(70));
+    }
+
+
+    // -------------------------------------------------------
+    // PRUEBAS EN LISTAS SIMPLEMENTE ENLAZADAS
+    // -------------------------------------------------------
     private static void ejecutarPruebasEnSLL() {
-        // Crear una lista simplemente enlazada
+
         ListaSimpleEnlazada lista = new ListaSimpleEnlazada();
         lista.insert(1);
         lista.insert(2);
@@ -165,18 +201,18 @@ public class SearchDemo {
         lista.insert(4);
         lista.insert(5);
 
-        // Prueba 1: Buscar la primera ocurrencia
         NodoSLL resultadoPrimero = BusquedaSLL.findFirst(lista.head, 3);
-        System.out.println("Primera ocurrencia de 3: " + (resultadoPrimero != null ? resultadoPrimero.valor : "No encontrado"));
+        System.out.println("Primera ocurrencia de 3: " +
+                (resultadoPrimero != null ? resultadoPrimero.valor : "No encontrado"));
 
-        // Prueba 2: Buscar la última ocurrencia
-        lista.insert(3); // Agregar un duplicado para probar
+        lista.insert(3);
         NodoSLL resultadoUltimo = BusquedaSLL.findLast(lista.head, 3);
-        System.out.println("Última ocurrencia de 3: " + (resultadoUltimo != null ? resultadoUltimo.valor : "No encontrado"));
+        System.out.println("Última ocurrencia de 3: " +
+                (resultadoUltimo != null ? resultadoUltimo.valor : "No encontrado"));
 
-        // Prueba 3: Buscar todos los nodos que cumplen un predicado
-        Predicate<NodoSLL> predicado = nodo -> nodo.valor % 2 == 0; // Números pares
+        Predicate<NodoSLL> predicado = nodo -> nodo.valor % 2 == 0;
         List<NodoSLL> resultadosTodos = BusquedaSLL.findAll(lista.head, predicado);
+
         System.out.print("Nodos con valores pares: ");
         if (resultadosTodos.isEmpty()) {
             System.out.println("[]");
@@ -185,5 +221,4 @@ public class SearchDemo {
             System.out.println();
         }
     }
-
 }
