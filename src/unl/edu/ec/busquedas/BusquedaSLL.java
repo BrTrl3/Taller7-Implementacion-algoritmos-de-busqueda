@@ -11,7 +11,7 @@ import java.util.function.Predicate;
  */
 public class BusquedaSLL {
 
-    // Paso 1: Primera ocurrencia (retorna el nodo) [cite: 38]
+    // Paso 1: Primera ocurrencia (retorna el nodo) 
     public static NodoSLL findFirst(NodoSLL head, int key) {
         NodoSLL actual = head;
         while (actual != null) {
@@ -23,7 +23,7 @@ public class BusquedaSLL {
         return null; // No encontrado
     }
 
-    // Paso 2: Última ocurrencia (retorna el nodo) [cite: 43]
+    // Paso 2: Última ocurrencia (retorna el nodo) 
     public static NodoSLL findLast(NodoSLL head, int key) {
         NodoSLL actual = head;
         NodoSLL lastMatch = null;
@@ -36,7 +36,7 @@ public class BusquedaSLL {
         return lastMatch; // Retorna el último nodo encontrado, o null
     }
 
-    // Paso 3: findAll por predicado (retorna lista de nodos) [cite: 51]
+    // Paso 3: findAll por predicado (retorna lista de nodos) 
     public static List<NodoSLL> findAll(NodoSLL head, Predicate<NodoSLL> p) {
         List<NodoSLL> resultNodes = new ArrayList<>();
         NodoSLL actual = head;
