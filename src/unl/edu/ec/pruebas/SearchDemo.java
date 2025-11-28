@@ -39,13 +39,13 @@ public class SearchDemo {
 
                 switch (currentMethodGroup) {
                     case "buscarPrimero":
-                        header = "A. BÚSQUEDA SECUENCIAL CLÁSICA: PRIMERA OCURRENCIA [indexOfFirst]";
+                        header = "BÚSQUEDA SECUENCIAL CLÁSICA: PRIMERA OCURRENCIA [indexOfFirst]";
                         break;
                     case "buscarUltimo":
-                        header = "B. BÚSQUEDA SECUENCIAL CLÁSICA: ÚLTIMA OCURRENCIA [indexOfLast]";
+                        header = "BÚSQUEDA SECUENCIAL CLÁSICA: ÚLTIMA OCURRENCIA [indexOfLast]";
                         break;
                     case "buscarTodos":
-                        header = "C. BÚSQUEDA POR PREDICADO [findAll]";
+                        header = "BÚSQUEDA POR PREDICADO [findAll]";
                         break;
                     default:
                         header = "GRUPO NO RECONOCIDO";
@@ -118,7 +118,7 @@ public class SearchDemo {
     private static void ejecutarPruebasConCentinela() {
 
         System.out.println("\n" + "=".repeat(70));
-        System.out.println("D. BÚSQUEDA SECUENCIAL CON CENTINELA [searchWithSentinel]");
+        System.out.println("BÚSQUEDA SECUENCIAL CON CENTINELA [searchWithSentinel]");
         System.out.println("=".repeat(70));
 
         int[][] casos = {
@@ -158,7 +158,7 @@ public class SearchDemo {
     private static void ejecutarPruebasBinarias() {
 
         System.out.println("\n" + "=".repeat(70));
-        System.out.println("E. BÚSQUEDA BINARIA [binarySearch]");
+        System.out.println("BÚSQUEDA BINARIA [binarySearch]");
         System.out.println("=".repeat(70));
 
         int[][] casos = {
