@@ -129,7 +129,8 @@ Runner (compilador de codigo)
 ### **A. Búsqueda Secuencial Clásica: Primera Ocurrencia (`indexOfFirst`)**
 
 
-<img width="724" height="467" alt="image" src="https://github.com/user-attachments/assets/05b1b516-ac6f-45e9-9c13-0621e59ed86e" />
+<img width="721" height="468" alt="image" src="https://github.com/user-attachments/assets/d255aebd-57ad-400f-bea2-081dae8b3092" />
+
 
 
 
@@ -149,7 +150,8 @@ Runner (compilador de codigo)
 ### **B. Búsqueda Secuencial Clásica: Última Ocurrencia (`indexOfLast`)**
 
 
-<img width="755" height="479" alt="image" src="https://github.com/user-attachments/assets/20114c58-2b66-4969-9367-a1d388da37e9" />
+<img width="731" height="471" alt="image" src="https://github.com/user-attachments/assets/4a9002af-b6e8-42fa-ad79-71cf9fd6b890" />
+
 
 
 
@@ -167,7 +169,8 @@ Runner (compilador de codigo)
 
 ### **C. Búsqueda por Predicado (`findAll`)**
 
-<img width="762" height="412" alt="image" src="https://github.com/user-attachments/assets/c1175f8a-f44d-461d-832f-79c18d554190" />
+<img width="766" height="412" alt="image" src="https://github.com/user-attachments/assets/0998fab8-3cdf-42bb-aec4-c05cf927b7b3" />
+
 
 
 | ID  | Arreglo             | Predicado        | Resultado Esperado | Resultado Obtenido | Estado |
@@ -179,10 +182,29 @@ Runner (compilador de codigo)
 
 > El método `findAll` demuestra ser robusto al identificar todos los índices que cumplen con un predicado. Responde correctamente a predicados específicos como números pares, impares o mayores que un valor, y maneja casos vacíos devolviendo una lista vacía.
 
+### **D. Búsqueda Binaria (`binarySearch`)**
 
-### **D. Búsqueda Secuencial con Centinela (`searchWithSentinel`)**
+<img width="771" height="281" alt="image" src="https://github.com/user-attachments/assets/209d285a-39e9-4282-b83d-379c60676d9c" />
 
-<img width="1003" height="282" alt="image" src="https://github.com/user-attachments/assets/bdd62caf-6f3a-4518-92a8-77f17118a209" />
+
+| **Caso** | **Arreglo**         | **Clave** | **Índice Esperado** | **Índice Obtenido** | **Resultado** |
+|----------|---------------------|-----------|----------------------|---------------------|---------------|
+| 1        | `[1, 2, 3, 4, 5]`  | `3`       | `2`                  | `2`                 | **PASS**      |
+| 2        | `[10, 20, 30, 40]` | `25`      | `-1`                 | `-1`                | **PASS**      |
+| 3        | `[5, 6, 7, 8, 9]`  | `7`       | `2`                  | `2`                 | **PASS**      |
+| 4        | `[]`               | `1`       | `-1`                 | `-1`                | **PASS**      |
+| 5        | `null`             | `2`       | `-1`                 | `-1`                | **PASS**      |
+
+---
+
+
+> **Casos con arreglos ordenados**: La búsqueda binaria funciona correctamente cuando el arreglo está ordenado, devolviendo el índice esperado de la clave buscada.
+> **Clave no encontrada**: Cuando la clave no está presente en el arreglo, el método devuelve `-1` como se esperaba.
+
+### **E. Búsqueda Secuencial con Centinela (`searchWithSentinel`)**
+
+<img width="1008" height="289" alt="image" src="https://github.com/user-attachments/assets/28b24c78-84a2-4709-8db8-2fa725e5bfef" />
+
 
 
 | Caso | Arreglo             | Clave | Índice Obtenido | Comparaciones |
@@ -196,7 +218,7 @@ Runner (compilador de codigo)
 > La búsqueda con centinela optimiza el número de comparaciones al agregar un valor centinela al final del arreglo. El método maneja correctamente arreglos vacíos o nulos, devolviendo `-1` y cero comparaciones en estos casos.
 
 
-### **D. Pruebas en Listas Simplemente Enlazadas (SLL)**
+### **F. Pruebas en Listas Simplemente Enlazadas (SLL)**
 
 <img width="718" height="226" alt="image" src="https://github.com/user-attachments/assets/cf917a1d-54f5-4134-b15a-b6a5f82e9252" />
 
