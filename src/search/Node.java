@@ -21,7 +21,9 @@ public class Node {
      * @param value valor que contendrá el nodo
      */
     public Node(int value) {
+
         this.value = value;
+        this.next = null;
     }
 
     @Override

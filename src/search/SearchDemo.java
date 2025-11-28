@@ -22,6 +22,15 @@ public class SearchDemo {
         int[] D = {2, 2, 2, 2};
         int[] E = {9, 1, 8, 2};
 
+        //Datasets casos borde
+        int[] empty = {};
+        int[] single = {7};
+        int[] bs1 = {4};
+
+        // SLL borde
+        Node emptyList = null;
+        Node singleNode = new Node(10);
+
         // -------------------------------------------------------------
         // PRIMERA Y ÚLTIMA OCURRENCIA EN A
         // -------------------------------------------------------------
@@ -105,6 +114,36 @@ public class SearchDemo {
         // findAll < 3
         List<Node> nodesFound = SearchAlgorithms.findAll(head, n -> n.value < 3);
         System.out.println("SLL findAll <3 → " + nodesFound);
+
+        // Casos borde
+        System.out.println("\n----- Casos Borde -----\n");
+
+        // Arreglo vacio
+        System.out.println("Arreglo vacío: []");
+        System.out.println("indexOfFirst → " + SearchAlgorithms.indexOfFirst(empty, 5));
+        System.out.println("indexOfLast → " + SearchAlgorithms.indexOfLast(empty, 5));
+        System.out.println("binarySearch → " + SearchAlgorithms.binarySearch(empty, 5));
+        System.out.println();
+
+        //Arreglo con un solo elemento
+        System.out.println("Arreglo de un solo elemento: " + Arrays.toString(single));
+        System.out.println("indexOfFirst → " + SearchAlgorithms.indexOfFirst(single, 7));
+        System.out.println("indexOfLast → " + SearchAlgorithms.indexOfLast(single, 7));
+        System.out.println("centinela → " + SearchAlgorithms.sentinelSearch(single, 7));
+        System.out.println("binarySearch → " + SearchAlgorithms.binarySearch(single, 7));
+        System.out.println();
+
+        //SLL Vacia
+        System.out.println("SLL vacía:");
+        System.out.println("findFirst → " + SearchAlgorithms.findFirst(emptyList, 5));
+        System.out.println("findLast → " + SearchAlgorithms.findLast(emptyList, 5));
+        System.out.println("findAll → " + SearchAlgorithms.findAll(emptyList, n -> n.value < 5));
+        System.out.println();
+
+        // Busqueda binaria con arreglo de un solo elemento
+        System.out.println("Busqueda binaria con arreglo de un elemento: [4]");
+        System.out.println("Busqueda binaria → " + SearchAlgorithms.binarySearch(bs1, 4));
+        System.out.println();
     }
 
     /**
